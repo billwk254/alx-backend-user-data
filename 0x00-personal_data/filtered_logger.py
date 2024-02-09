@@ -3,12 +3,13 @@
 Filtered logger module
 """
 
-
 import re
+from typing import List
 
-def filter_datum(fields: list[str], redaction: str, message: str, separator: str) -> str:
+
+def filter_datum(fields: List[str], redaction: str, message: str, separator: str) -> str:
     """
     Replaces specified fields in the log message with redaction.
     """
-    return re.sub(r'(?<={}=).*?(?={})'.format('|'.join(fields), re.escape(separator)), redaction, message)
-
+    pattern = re.compile(r'({})=[^{}]*'.format('|'.join(fields), re.escape(separator)))
+    return pattern.sub(r'\1={}'.format(redaction), message)
