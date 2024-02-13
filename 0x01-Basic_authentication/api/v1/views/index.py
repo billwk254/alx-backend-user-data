@@ -30,3 +30,9 @@ def stats() -> str:
 def unauthorized_route():
     """Unauthorized route"""
     abort(401)
+
+
+@app_views.route('/forbidden', methods=['GET'])
+def forbidden_route():
+    """Forbidden route"""
+    abort(403)
