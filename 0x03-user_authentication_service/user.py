@@ -9,6 +9,7 @@ from sqlalchemy import Column, Integer, String
 # Base class for ORM
 Base = declarative_base()
 
+
 class User(Base):
     """
     User class representing registered users in the authentication system.
